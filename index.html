@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trey Hemmings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts: Instrument Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Instrument Sans', Arial, Helvetica, sans-serif;
+      background: #fff;
+      margin: 0;
+      color: #181818;
+      min-height: 100vh;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      padding: 20px 0 0 40px;
+      gap: 28px;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 28px;
+      margin-right: 28px;
+      letter-spacing: -1px;
+      font-family: 'Instrument Sans', Arial, Helvetica, sans-serif;
+    }
+    .nav-link {
+      color: #181818;
+      text-decoration: none;
+      padding-bottom: 0;
+      border-bottom: none;
+      font-weight: 400;
+      margin-right: 10px;
+    }
+    .nav-link.active {
+      border-bottom: 2px solid #181818;
+      padding-bottom: 2px;
+    }
+    .section-content {
+      display: none;
+    }
+    .section-content.active {
+      display: block;
+    }
+    main {
+      margin-top: 100px;
+      margin-left: 48px;
+      max-width: 900px;
+    }
+    .contact-container {
+      margin-top: 120px;
+      margin-left: 48px;
+    }
+    .contact-title {
+      font-weight: 700;
+      font-size: 28px;
+      font-family: 'Instrument Sans', Arial, Helvetica, sans-serif;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .contact-email {
+      font-size: 18px;
+      letter-spacing: 0.01em;
+      color: #181818;
+    }
+    .center-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+    }
+    .portfolio-btn {
+      font-size: 18px;
+      color: #181818;
+      background: none;
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      outline: none;
+      transition: color 0.2s;
+      margin-top: 0;
+    }
+    .portfolio-btn:hover,
+    .portfolio-btn:focus {
+      text-decoration: underline;
+      color: #000;
+    }
+    @media (max-width: 700px) {
+      main, .contact-container {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      nav {
+        padding-left: 10px;
+      }
+    }
+  </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      function showSection(sectionId) {
+        document.querySelectorAll('.section-content').forEach(function(sec) {
+          sec.classList.remove('active');
+        });
+        document.getElementById(sectionId).classList.add('active');
+        document.querySelectorAll('.nav-link').forEach(function(link) {
+          link.classList.remove('active');
+        });
+        document.querySelector('.nav-link[data-section="' + sectionId + '"]').classList.add('active');
+      }
+
+      document.querySelectorAll('.nav-link').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          showSection(this.getAttribute('data-section'));
+          history.replaceState(null, '', '#' + this.getAttribute('data-section'));
+        });
+      });
+
+      // Hash navigation support
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'work') {
+        showSection('work');
+      } else {
+        showSection('about');
+      }
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <span class="logo">TREY HEMMINGS</span>
+    <a href="#about" class="nav-link" data-section="about">about + contact</a>
+    <a href="#work" class="nav-link" data-section="work">work</a>
+  </nav>
+
+  <!-- About + Contact Section -->
+  <div id="about" class="section-content">
+    <main>
+      <div class="section">
+        <p>
+          Trey Hemmings is a Fashion Stylist based in New York.
+        </p>
+        <p>
+          He is currently in France.
+        </p>
+        <p>
+          He has worked with clients in New York, Paris, Milan, London, Hong Kong, Amsterdam, Athens, Madrid, Mexico City, and Sydney.
+        </p>
+        <p>
+          Previous clients include Elle US, Elle Mexico, Vogue Greece, Numéro Netherlands, Exit Magazine, Hero Magazine, V Magazine, i-D Magazine, Wonderland Magazine, Love Want Magazine, Bal Harbour Magazine, Crosscurrent Magazine, South China Morning Post Style, Highsnobiety, Behind The Blinds, Bottega Veneta, DKNY, Saint Art, S. Moda, Skinfix, and Tailored Brands.
+        </p>
+      </div>
+    </main>
+    <div class="contact-container">
+      <div class="contact-title">CONTACT</div>
+      <div class="contact-email">th@treyhemmings.com</div>
+    </div>
+  </div>
+
+  <!-- Work Section -->
+  <div id="work" class="section-content">
+    <div class="center-content">
+      <a href="portfolio.pdf" class="portfolio-btn" target="_blank" rel="noopener">PDF PORTFOLIO</a>
+    </div>
+  </div>
+</body>
+</html>
